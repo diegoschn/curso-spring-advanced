@@ -192,10 +192,19 @@ public class Funcionario implements Serializable {
 	public Optional<BigDecimal> getValorHoraOpt(){
 		return Optional.ofNullable(valorHora);
 	}
-	
+	/*
+	 * @Transient - Serve para fazer conversões de dto(não persiste) "ver depois"
+	 * */
 	@Transient
 	public Optional<Float> getQtdHorasTrabalhoDiaOpt(){
 		return Optional.ofNullable(qtdHorasTrabalhoDia);
+	}
+	
+	public String toString() {
+		return "Funcionario [id=" + id + ", nome-" + nome + ", email-" + email + ", senha-" + senha + ", cpf-" + cpf 
+				+ ", valorHora-" + valorHora + ", qtdHorasTrabalhadoDia-" + qtdHorasTrabalhoDia + ", qtdHorasAlmoco-"  
+				+ qtdHorasAlmoco + ", perfil-" + perfil + ", dataCriacao-" + dataCriacao + ", dataAtualizacao-" 
+				+ dataAtualizacao + ", empresa-" + empresa + "]";
 	}
 
 	@Override
