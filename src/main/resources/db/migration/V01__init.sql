@@ -1,4 +1,4 @@
-CREATE TABLE empresa(
+create table empresa(
 
 	id SERIAL not null,
 	cnpj varchar(255) not null,
@@ -9,7 +9,7 @@ CREATE TABLE empresa(
 	CONSTRAINT empresa_id_pk PRIMARY KEY (id)
 );
 
-CREATE TABLE funcionario(
+create table funcionario(
 
 	id SERIAL not null,
 	cpf varchar(255) not null,
@@ -26,12 +26,12 @@ CREATE TABLE funcionario(
 	CONSTRAINT funcionario_id_pk PRIMARY KEY (id) 
 );
 
-alter table FUNCIONARIO
+alter table funcionario
    add constraint FK_func_reference_empresa foreign key (empresa_id)
       references empresa (id)
       on delete restrict on update restrict;
       
-CREATE TABLE lancamento(
+create table lancamento(
 
 	id SERIAL not null,
 	data timestamp not null,

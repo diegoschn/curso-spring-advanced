@@ -31,10 +31,10 @@ public class Empresa implements Serializable {
 	@Column(name = "cnpj", nullable = false)
 	private String cnpj;
 	
-	@Column(name = "data_criacao",nullable = false)
+	@Column(name = "data_criacao",nullable = true)
 	private Date dataCriacao;
 	
-	@Column(name = "data_atualizacao", nullable = false)
+	@Column(name = "data_atualizacao", nullable = true)
 	private Date dataAtualizacao;
 	
 	@OneToMany(mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

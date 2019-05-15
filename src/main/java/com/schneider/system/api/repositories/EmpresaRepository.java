@@ -15,6 +15,7 @@ import com.schneider.system.api.model.Empresa;
  *	do mesmo valor... Se no caso tiver alguma transação que precise ser aberta.. então
  *	no próprio método deverá ser colocado como readOnly = false
  */
+
 public interface EmpresaRepository extends JpaRepository<Empresa, Long>{
 	
 	@Transactional(readOnly = true)
