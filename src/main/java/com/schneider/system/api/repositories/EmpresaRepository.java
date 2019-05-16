@@ -20,4 +20,13 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Long>{
 	
 	@Transactional(readOnly = true)
 	Empresa findByCnpj(String cnpj);
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

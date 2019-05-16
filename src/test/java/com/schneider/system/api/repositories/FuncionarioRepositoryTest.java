@@ -33,12 +33,13 @@ public class FuncionarioRepositoryTest {
 	private static final String EMAIL = "email@email.com";
 	private static final String CPF = "01899685596";
 	
-	@Before
+	
 	/**
 	 * 
 	 * @throws Exception
 	 * O before é executado antes de fazer qualquer teste
 	 */
+	@Before
 	public void setUp() throws Exception{
 		Empresa empresa = this.empRepo.save(obterDadosEmpresa());
 		this.funcRepo.save(obterDadosFuncionario(empresa));
@@ -57,6 +58,13 @@ public class FuncionarioRepositoryTest {
 	}
 	
 	@Test
+	public void testBuscarFuncionarioPorEmailECpf() {
+		Funcionario funcionario = this.funcRepo.findByCpfOrEmail(CPF, EMAIL);
+		
+		assertNotNull(funcionario);
+	}
+	
+	@Test
 	public void testBuscarFuncionarioPorCPF() {
 		Funcionario funcionario = this.funcRepo.findByCpf(CPF);
 		assertEquals(CPF, funcionario.getCpf());
@@ -64,7 +72,7 @@ public class FuncionarioRepositoryTest {
 	
 	@Test
 	public void testBuscarFuncionarioPorEmailECpfParaCpfInvalido() {
-		Funcionario funcionario = funcRepo.findByCpfOrEmail(CPF, EMAIL);
+		Funcionario funcionario = funcRepo.findByCpfOrEmail(CPF,"email@invalido.com");
 		
 		assertNotNull(funcionario);
 	}

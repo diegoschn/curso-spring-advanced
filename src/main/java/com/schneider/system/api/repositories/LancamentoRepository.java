@@ -26,6 +26,7 @@ import com.schneider.system.api.model.Lancamento;
 @NamedQueries({
 	@NamedQuery(name = "LancamentoRepository.findByFuncionarioId",
 			query = "SELECT lanc FROM Lancamento lanc WHERE lanc.funcionario.id = :funcionarioId")
+	
 })
 public interface LancamentoRepository extends JpaRepository<Lancamento, Long>{
 
