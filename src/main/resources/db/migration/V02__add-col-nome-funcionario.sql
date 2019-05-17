@@ -1,0 +1,1 @@
+alter table funcionario add nome varchar(255) not null;

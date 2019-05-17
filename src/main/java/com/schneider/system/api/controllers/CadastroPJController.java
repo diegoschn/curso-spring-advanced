@@ -17,14 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.schneider.system.api.dtos.CadastroPJDto;
+import com.schneider.system.api.enums.PerfilEnum;
 import com.schneider.system.api.model.Empresa;
 import com.schneider.system.api.model.Funcionario;
 import com.schneider.system.api.response.Response;
 import com.schneider.system.api.service.EmpresaService;
 import com.schneider.system.api.service.FuncionarioService;
+import com.schneider.system.api.utils.PasswordUtils;
 
 @RestController
-@RequestMapping("/api/cadastrar-pj")
+@RequestMapping("/api/cadastro-pj")
 @CrossOrigin(origins = "*")
 public class CadastroPJController {
 
@@ -74,16 +76,55 @@ public class CadastroPJController {
 		
 	}
 
+	/**
+	 * 
+	 * Popula o DTO de cadastro com os dados do funcionário e empresa.
+	 * 
+	 * @param funcionario
+	 * @return cadastro
+	 */
 	private CadastroPJDto converterCadastroPjDto(Funcionario funcionario) {
-		return null;
+		CadastroPJDto cadastro = new CadastroPJDto();
+		cadastro.setId(funcionario.getId());
+		cadastro.setNome(funcionario.getNome());
+		cadastro.setEmail(funcionario.getEmail());
+		cadastro.setCpf(funcionario.getCpf());
+		cadastro.setRazaoSocial(funcionario.getEmpresa().getRazaoSocial());
+		cadastro.setCnpj(funcionario.getEmpresa().getCnpj());
+		return cadastro;
 	}
-
-	private Funcionario converterDtoParaFuncionario(CadastroPJDto cadastroPJDto, BindingResult result) {
-		return null;
+	
+	/**
+	 * 
+	 * Converte os dados DTO para funcionário.
+	 * 
+	 * @param cadastroPJDto
+	 * @param result
+	 * @return funcionario
+	 * @throws NoSuchAlgorithmException
+	 */
+	private Funcionario converterDtoParaFuncionario(CadastroPJDto cadastroPJDto, BindingResult result) throws NoSuchAlgorithmException{
+		Funcionario funcionario = new Funcionario();
+		funcionario.setNome(cadastroPJDto.getNome());
+		funcionario.setEmail(cadastroPJDto.getEmail());
+		funcionario.setCpf(cadastroPJDto.getCpf());
+		funcionario.setPerfil(PerfilEnum.ROLE_ADMIN);
+		funcionario.setSenha(PasswordUtils.gerarBCrypt(cadastroPJDto.getSenha()));
+		return funcionario;
 	}
-
+	/**
+	 * 
+	 * Converte os dados do DTO para empresa
+	 * 
+	 * @param cadastroPJDto
+	 * @return empresa
+	 */
 	private Empresa converterDtoParaEmpresa(CadastroPJDto cadastroPJDto) {
-		return null;
+		Empresa empresa = new Empresa();
+		empresa.setCnpj(cadastroPJDto.getCnpj());
+		empresa.setRazaoSocial(cadastroPJDto.getRazaoSocial());
+		
+		return empresa;
 	}
 	
 	/**
