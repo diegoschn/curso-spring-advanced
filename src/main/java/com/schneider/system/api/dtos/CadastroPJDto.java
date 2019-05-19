@@ -1,5 +1,9 @@
 package com.schneider.system.api.dtos;
 
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,6 +22,9 @@ public class CadastroPJDto {
 	@Length(min = 5, max = 200, message = "Email deve conter entre 5 e 200 caracteres.")
 	@Email(message = "Email inválido.")
 	private String email;
+	
+	@Column(precision=10,scale=2)
+	private BigDecimal valorHora;
 
 	@NotEmpty(message = "Senha não pode ser vazio.")
 	private String senha;
@@ -92,12 +99,20 @@ public class CadastroPJDto {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	public BigDecimal getValorHora() {
+		return valorHora;
+	}
+	
+	public void setValorHora(BigDecimal valorHora) {
+		this.valorHora = valorHora;
+	}
 
 	@Override
 	public String toString() {
 
 		return "CadastroPJDto [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
-				+ ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj + "]";
+				+ ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj + ", valor da hora-" + valorHora + "]";
 	}
 
 }

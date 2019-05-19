@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
@@ -97,6 +98,7 @@ public class Empresa implements Serializable {
 		dataAtualizacao = new Date();
 	}
 	/*Define atualização automática de acordo com as mudanças do sistema*/
+	@PrePersist
 	public void prePersist() {
 		final Date atual = new Date();
 		dataCriacao = atual;
