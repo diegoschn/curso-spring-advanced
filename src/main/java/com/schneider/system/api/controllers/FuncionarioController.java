@@ -78,8 +78,27 @@ public class FuncionarioController {
 		return ResponseEntity.ok().body(response);
 	}
 
+	/**
+	 * 
+	 * Retorna um DTO com os dados de um funcionário
+	 * 
+	 * @param funcionario
+	 * @return dto
+	 */
 	private FuncionarioDto converterFuncionarioDto(Funcionario funcionario) {
-		return null;
+		FuncionarioDto dto = new FuncionarioDto();
+		dto.setId(funcionario.getId());
+		dto.setEmail(funcionario.getEmail());
+		dto.setNome(funcionario.getNome());
+		funcionario.getQtdHorasAlmocoOpt().ifPresent(
+				qtdHorasAlmoco->dto.setQtdHorasAlmoco(Optional.of(Float.toString(qtdHorasAlmoco))));
+		
+		funcionario.getQtdHorasTrabalhoDiaOpt().ifPresent(
+				qtdHorasTrabalhoDia->dto.setQtdHorasTrabalhoDia(Optional.of(Float.toString(qtdHorasTrabalhoDia))));
+		
+		funcionario.getValorHoraOpt().ifPresent(
+				valorHora->dto.setValorHora(Optional.of(valorHora.toString())));
+		return dto;
 	}
 	
 	/**

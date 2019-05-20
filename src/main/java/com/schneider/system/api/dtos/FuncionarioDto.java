@@ -79,6 +79,7 @@ public class FuncionarioDto {
 		this.qtdHorasAlmoco = qtdHorasAlmoco;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "FuncionarioDto [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", valorHora="
